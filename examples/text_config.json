@@ -1,0 +1,29 @@
+{
+    "transformations": [
+        {
+            "type": "tokenize",
+            "columns": ["text"]
+        },
+        {
+            "type": "remove_stopwords",
+            "columns": ["text_tokens"],
+            "language": "english"
+        },
+        {
+            "type": "lemmatize",
+            "columns": ["text_tokens_filtered"]
+        },
+        {
+            "type": "vectorize",
+            "columns": ["text_tokens_lemmatized"],
+            "method": "tfidf",
+            "max_features": 1000,
+            "ngram_range": [1, 2]
+        },
+        {
+            "type": "extract_entities",
+            "columns": ["text"],
+            "entity_types": ["PERSON", "ORG", "GPE"]
+        }
+    ]
+}
